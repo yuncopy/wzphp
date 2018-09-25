@@ -26,7 +26,10 @@ class Bootstrap
         // 注册AUTOLOAD方法
         spl_autoload_register('self::autoload');
 
-        //异常处理
+        // 设定错误和异常处理
+        register_shutdown_function('self::fatalError');
+        //set_error_handler('self::appError');
+        //set_exception_handler('self::appException');
 
         // URL调度
         self::dispatch();
@@ -141,5 +144,39 @@ class Bootstrap
         }
 
         return new self();
+    }
+
+
+    /**
+     * 致命错误捕获
+     *
+     * @author chenhuian
+    */
+    static public function fatalError() {
+        if ($e = error_get_last()) {
+            switch($e['type']){
+                case E_ERROR:
+                case E_PARSE:
+                case E_CORE_ERROR:
+                case E_COMPILE_ERROR:
+                case E_USER_ERROR:
+                    ob_end_clean();
+                    self::halt($e);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 错误输出
+     * @author chenhuian
+     *
+     * @param mixed $error 错误
+     * @return void
+     */
+    static public function halt($error) {
+        $e = array();
+
+        var_dump($error);
     }
 }
