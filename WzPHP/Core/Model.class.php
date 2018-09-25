@@ -14,6 +14,8 @@ class Model extends Medoo
 
     /**
      * 实例化数据库
+     *
+     * 使用手册https://medoo.lvtao.net/doc.php
     */
     public function __construct()
     {

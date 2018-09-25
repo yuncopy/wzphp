@@ -8,9 +8,9 @@ class IndexController
     public function indexAction()
     {
 
-        echo 'index';
-        Log::write();
 
-        (new IndexModel)->listData();
+        $data = (new IndexModel)->getList();
+
+        var_dump($data);
     }
 }

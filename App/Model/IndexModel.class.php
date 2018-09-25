@@ -5,13 +5,16 @@ namespace App\Model;
 class IndexModel extends \Core\Model {
 
 
-
+    private $table = 'admin';
     /**
      * 获取数据列表
     */
-    public function listData(){
+    public function getList(){
 
-        echo 11111;
+        return $this->select($this->table,'*',[
+            "LIMIT"=>5,
+            "ORDER" => ["id" => "DESC"],
+        ]);
     }
 
 }
