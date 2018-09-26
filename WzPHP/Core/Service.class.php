@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core;
+namespace WzPHP\Core;
 
 /**
  * WzPHP 服务核心类

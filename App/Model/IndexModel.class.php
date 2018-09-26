@@ -2,7 +2,9 @@
 
 namespace App\Model;
 
-class IndexModel extends \Core\Model {
+use WzPHP\Core\Model;
+
+class IndexModel extends Model {
 
 
     private $table = 'admin';

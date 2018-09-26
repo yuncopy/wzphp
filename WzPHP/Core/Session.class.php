@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core;
+namespace WzPHP\Core;
 
 /**
  * WzPHP SESSION核心类

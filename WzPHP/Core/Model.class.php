@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core;
+namespace WzPHP\Core;
 
 use Medoo\Medoo;
 
@@ -27,6 +27,7 @@ class Model extends Medoo
                 'server'        => DB_HOST,
                 'username'      => DB_USER,
                 'password'      => DB_PWD,
+                'port'          => DB_PORT,
                 'charset'       => DB_CHARSET
             ]);
         } catch (\PDOException $e) {

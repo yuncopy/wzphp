@@ -10,7 +10,8 @@ class IndexController
 
 
         $data = (new IndexModel)->getList();
-
+        //$a = 0/2;
+        //var_dump($ee);
         var_dump($data);
     }
 }
