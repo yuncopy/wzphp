@@ -1,5 +1,9 @@
 <?php
 
+
+/**
+ * 错误码提示统一处理类
+*/
 namespace App\Service;
 
 class ErrorService
@@ -17,6 +21,13 @@ class ErrorService
         '200'=>'请求成功',
         '400'=>'请求失败',
 
+        //用户相关30xx
+        '3001'=>'用户登录成功',
+        '3002'=>'用户登录失败',
+
+        //鉴权相关40xx
+        '4001'=>'鉴权成功',
+        '4002'=>'鉴权失败',
 
 
 
@@ -33,10 +44,11 @@ class ErrorService
     public static function getMsg($code = 0)
     {
         $code = (string)$code;
+        $prefix = "[{$code}]";
         if (isset(self::$_map[$code])) {
-            return self::$_map[$code];
+            return $prefix.'-'.self::$_map[$code];
         }
-        return null;
+        return $prefix;
     }
 
 

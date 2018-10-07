@@ -46,7 +46,8 @@ class StudentController extends BaseController
     */
     public function editAction()
     {
-        self::JSON(200,['data'=>'333']);
+
+        self::JSON(3002,['data'=>'333']);
     }
 
 
