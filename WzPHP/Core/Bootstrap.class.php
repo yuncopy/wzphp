@@ -140,7 +140,7 @@ class Bootstrap
             $_controller = self::$_controller;
             $class_name = "\\App{$_module}\\Controller\\{$_controller}Controller";
             $controller = new $class_name(); //实例化通过URL解析的类
-            $action = self::$_action . 'Action';
+            $action = strtolower(self::$_action) . 'Action';
             if (method_exists($controller, $action)) {
                 $controller->$action(); //使用类中方法
             } else {

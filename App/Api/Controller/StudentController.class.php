@@ -1,16 +1,51 @@
 <?php
+
+
+/**
+ *
+ * 测试接口
+ *
+*/
 namespace App\Api\Controller;
 
 use App\Model\IndexModel;
-use Core\Log;
+use \WzPHP\Core\Log as Log;
+
 class StudentController
 {
+
+
+    /**
+     *
+     * 获取信息
+     * @author chenhuian
+    */
     public function indexAction()
     {
 
         echo 'index';
-        Log::write();
+        Log::write(__FUNCTION__);
 
         (new IndexModel)->listData();
+    }
+
+    /**
+     *
+     * 添加数据
+     *
+    */
+    public function addAction()
+    {
+        echo 'add';
+        Log::write(__FUNCTION__);
+    }
+
+    /**
+     * 编辑数据
+    */
+    public function editAction()
+    {
+        echo 'edit';
+        Log::write(__FUNCTION__);
     }
 }
