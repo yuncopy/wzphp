@@ -9,9 +9,10 @@
 namespace App\Api\Controller;
 
 use App\Model\IndexModel;
-use \WzPHP\Core\Log as Log;
+use WzPHP\Core\Log as Log;
 
-class StudentController
+
+class StudentController extends BaseController
 {
 
 
@@ -45,7 +46,14 @@ class StudentController
     */
     public function editAction()
     {
-        echo 'edit';
-        Log::write(__FUNCTION__);
+        self::JSON(200,['data'=>'333']);
+    }
+
+
+    /**
+     * 保存数据
+    */
+    public function saveAction(){
+        
     }
 }
