@@ -39,7 +39,8 @@ class Bootstrap
         self::safeFilter();
 
         //运行应用
-        self::run();
+        //self::run();
+        self::run2();
     }
 
     /**
@@ -148,6 +149,49 @@ class Bootstrap
         }
 
         return new self();
+    }
+
+
+    /**
+     *
+     * 使用反射机制处理
+     * @author HuianChen
+     *
+     *
+    */
+    public function run2(){
+        $controller_path = APP_PATH.'Controller/'.self::$_controller.'Controller'.EXT;
+        if (is_file($controller_path) && file_exists($controller_path)) {
+            $_module = self::$_module ? "\\".self::$_module : '';
+            $_controller = self::$_controller;
+            $controller = "\\App{$_module}\\Controller\\{$_controller}Controller";
+            if(class_exists($controller)){
+                $reflectionClass = new \ReflectionClass($controller);
+
+                $action = strtolower(self::$_action) . 'Action';
+                if($reflectionClass->hasMethod($action)){
+                    $params = $_GET;
+                    //检查方法，并抛出异常
+                    // 前置操作
+                    if (method_exists($controller, 'before' . $action)) {
+                        call_user_func_array([&$controller, 'before' . $action], $params);
+                    }
+
+                    //$return = call_user_func_array([&$controller, $action], $params); // 执行控制器对应方法
+
+                    //$controller = $reflectionClass->newInstanceArgs([]);
+                    $controller = $reflectionClass->newInstance ();
+                    if (method_exists($controller, $action)) {
+                        $controller->$action(); // 执行控制器对应方法
+                    }
+
+                    // 后置操作
+                    if (method_exists($controller, 'after' . $action)) {
+                        call_user_func_array([&$controller, 'after' . $action], $params);
+                    }
+                }
+            }
+        }
     }
 
 
